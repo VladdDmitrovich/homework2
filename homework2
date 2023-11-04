@@ -1,0 +1,38 @@
+#підключення бібліотек
+
+from PyQt5.QtCore import Qt #підключення бібліотек
+from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QLabel, QVBoxLayout #імпортуємо все для створення програми
+from random import randint #іпорт рандому
+
+#створення елементів інтерфейсу
+
+app = QApplication([])#створення покища не робочих кнопок
+win = QWidget() #створення покища не робочих кнопок
+win.setWindowTitle("Winner_generator") #створення тексту в кнопці
+win.resize(600, 400) #задвання розмірів
+win.move(550, 250) #створення розсташування
+
+text1 = QLabel("Натисни, щоб дізнатись winnera") #створення тексту
+text2 =QLabel("?") #також текстик :)
+gener = QPushButton ("Згенерувати") #тоже текст
+
+#прив'язка елементів до вертикальної лінії
+
+line = QVBoxLayout()#вертикальна лінія
+line.addWidget(text1, alignment = Qt.AlignCenter)#розташування тексту за вертикальною лінією
+line.addWidget(text2, alignment = Qt.AlignCenter)#розташування тексту за вертикальною лінією номер два
+line.addWidget(gener, alignment = Qt.AlignCenter)#розташування кнопки за вертикальною лінією
+
+win.setLayout(line)#прив'язуємо весь текст до лінії
+
+def funk ():#створюємо функцію
+    num =  randint(1, 100)#задання всіх можливих чисел
+    text1.setText("Winner:")#написання тексту який вказує переможця
+    text2.setText(str(num))#тут буде число переможця
+
+gener.clicked.connect(funk)#створення функції нажимання кнопки
+
+
+
+win.show()#показ вікна
+app.exec_()#функція
